@@ -67,18 +67,15 @@ do_start()
     # the default location is /var/run/jenkins/jenkins.pid but the parent directory needs to be created
     mkdir `dirname $PIDFILE` > /dev/null 2>&1 || true
     chown $JENKINS_SLAVE_USER `dirname $PIDFILE`
-    echo "Created pid dir"
+
     # create log directory
     mkdir -p `dirname $JENKINS_SLAVE_LOG` > /dev/null 2>&1 || true
     chown $JENKINS_SLAVE_USER -R `dirname $JENKINS_SLAVE_LOG`
-    echo "Created log dir"
 
     # Return
     #   0 if daemon has been started
     #   1 if daemon was already running
     #   2 if daemon could not be started
-    $DAEMON $DAEMON_ARGS --running
-    echo $DAEMON $DAEMON_ARGS Already running $?
     $DAEMON $DAEMON_ARGS --running && return 1
 
     # If the var MAXOPENFILES is enabled in /etc/default/jenkins then set the max open files to the
