@@ -1,0 +1,14 @@
+---
+- name: Swarm Slave Client jar
+  get_url:
+    url="http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/{{swarm_slave_version}}/swarm-client-{{swarm_slave_version}}-jar-with-dependencies.jar"
+    dest="/usr/local/src/swarm-client-{{swarm_slave_version}}-jar-with-dependencies.jar"
+
+- template: src=jenkins-slave.j2 dest=/etc/init.d/jenkins-slave mode='a+x'
+
+- user: name={{swarm_slave_user}} comment="Jenkins Slave User"
+
+- apt: name=openjdk-7-jre-headless state=present
+- apt: name=daemon state=present
+
+- service: name=jenkins-slave enabled=yes state=started

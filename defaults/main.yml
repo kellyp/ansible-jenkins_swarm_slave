@@ -1,0 +1,13 @@
+---
+# defaults file for kellyp.jenkins-swarm-slave
+#
+#version of the swarm slave client to install
+swarm_slave_version: "1.22"
+#user for running the slave
+swarm_slave_user: "jenkins-slave"
+#username for authenticating with jenkins
+jenkins_username: "jenkins"
+#password for authenticating with jenkins
+jenkins_password: "jenkins"
+#url for connecting to jenkins master
+jenkins_url: "http://localhost:8080"
