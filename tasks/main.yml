@@ -7,6 +7,7 @@
 - template: src=jenkins-slave.j2 dest=/etc/init.d/jenkins-slave mode='a+x'
 
 - user: name={{swarm_slave_user}} comment="Jenkins Slave User"
+- file: path=/workspace owner={{swarm_slave_user}} state=directory
 
 - apt: name=openjdk-7-jre-headless state=present
 - apt: name=daemon state=present
